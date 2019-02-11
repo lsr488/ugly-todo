@@ -1,21 +1,26 @@
 let todoList = {
-	todos: ["make sandwich", "walk dog", "do laundry"],
+	todos: [],
 	showTodos: function() {
 		console.log("My todos:", this.todos);
 	},
-	addItem: function(item) {
-		this.todos.push(item);
+	addItem: function(todoText) {
+		this.todos.push({
+				text: todoText,
+				completed: false
+			});
 		this.showTodos();
-		console.log(`"${item}" has been added.`);
 	},
-	editItem: function(index, newContent) {
-		this.todos[index] = newContent;
+	editItem: function(index, todoText) {
+		this.todos[index].text = todoText;
 		this.showTodos();
-		console.log(`Item ${index + 1} is now "${this.todos[index]}"`);
 	},
 	delItem: function(index) {
-		console.log(`"${this.todos[index]}" has been deleted.`);
 		this.todos.splice(index, 1);
+		this.showTodos();
+	},
+	toggleCompleted: function(index) {
+		let todo = this.todos[index];
+		todo.completed = !todo.completed;
 		this.showTodos();
 	}
 }
