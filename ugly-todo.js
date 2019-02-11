@@ -1,22 +1,21 @@
-// Should have a place to store todos --> use arrays
-let todos = ["item 1", "item 2", "item 3"];
-console.log("My todos:", todos);
-
-function showTodos() {
-	console.log("My todos:", todos);
-}
-
-function addTodo(item) {
-	todos.push(item);
-}
-
-function editTodo(index, newContent) {
-	todos[index] = newContent;
-	showTodos();
-	console.log(`Todo updated: item ${index + 1} is now ${todos[index]}`);
-}
-
-function delTodo(index) {
-	todos.splice(index, 1);
-	showTodos();
+let todoList = {
+	todos: ["make sandwich", "walk dog", "do laundry"],
+	showTodos: function() {
+		console.log("My todos:", this.todos);
+	},
+	addItem: function(item) {
+		this.todos.push(item);
+		this.showTodos();
+		console.log(`"${item}" has been added.`);
+	},
+	editItem: function(index, newContent) {
+		this.todos[index] = newContent;
+		this.showTodos();
+		console.log(`Item ${index + 1} is now "${this.todos[index]}"`);
+	},
+	delItem: function(index) {
+		console.log(`"${this.todos[index]}" has been deleted.`);
+		this.todos.splice(index, 1);
+		this.showTodos();
+	}
 }
