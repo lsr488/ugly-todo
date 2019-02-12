@@ -35,5 +35,23 @@ let todoList = {
 		let todo = this.todos[index];
 		todo.completed = !todo.completed;
 		this.showTodos();
+	},
+	toggleAll: function() {
+		var completedTodos = 0;
+		var totalTodos = this.todos.length;
+		// get number of completed iems
+		for(var i = 0; i < totalTodos; i++) {
+			if(this.todos[i].completed === true) {
+				completedTodos++;
+			}
+		}
+		// if everything's true, make everything false
+		if(completedTodos === totalTodos) {
+			for(var i = 0; i < totalTodos; i++) {
+				this.todos[i].completed = false;
+			}
+		} 
+		// else, make everything true
+		this.showTodos();
 	}
 }
