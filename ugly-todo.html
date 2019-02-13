@@ -7,8 +7,9 @@
 
 	<h1>Ugly Todo App</h1>
 
-	<button id="display">Display Todos</button>
-	<button id="toggle-all">Toggle All</button>
+	<!-- the onclick attribute is used in conjunction with the handlers object to replace querySelector and addEventListener -->
+	<button onclick="handlers.showTodos()">Display Todos</button>
+	<button onclick="handlers.toggleAll()">Toggle All</button>
 
 	<script type="text/javascript" src="ugly-todo.js"></script>
 

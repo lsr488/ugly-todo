@@ -1,6 +1,3 @@
-var displayButton = document.querySelector("#display");
-var toggleAllButton	= document.querySelector("#toggle-all");
-
 let todoList = {
 	todos: [],
 	showTodos: function() {
@@ -15,7 +12,7 @@ let todoList = {
 				} else {
 					taskCompleted = "( )";
 				}
-				console.log(i+1 + ". " + taskCompleted + " " + this.todos[i].text);
+				console.log(taskCompleted + " " + this.todos[i].text);
 			}
 		}
 	},
@@ -63,10 +60,12 @@ let todoList = {
 	}
 }
 
-displayButton.addEventListener('click', function() {
-	todoList.showTodos();
-});
-
-toggleAllButton.addEventListener('click', function() {
-	todoList.toggleAll();
-});
+// this is used instead of declaring individual document.querySelector variables and eventListeners, and paired with the html on-click="" attribute
+var handlers = {
+	showTodos: function() {
+		todoList.showTodos();
+	},
+	toggleAll: function() {
+		todoList.toggleAll();
+	}
+}
