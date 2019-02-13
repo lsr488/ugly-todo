@@ -1,3 +1,6 @@
+var displayButton = document.querySelector("#display");
+var toggleAllButton	= document.querySelector("#toggle-all");
+
 let todoList = {
 	todos: [],
 	showTodos: function() {
@@ -59,3 +62,11 @@ let todoList = {
 		this.showTodos();
 	}
 }
+
+displayButton.addEventListener('click', function() {
+	todoList.showTodos();
+});
+
+toggleAllButton.addEventListener('click', function() {
+	todoList.toggleAll();
+});
