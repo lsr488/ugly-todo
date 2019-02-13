@@ -7,10 +7,24 @@
 
 	<h1>Ugly Todo App</h1>
 
-	<!-- the onclick attribute is used in conjunction with the handlers object to replace querySelector and addEventListener -->
-	<button onclick="handlers.showTodos()">Display Todos</button>
-	<button onclick="handlers.toggleAll()">Toggle All</button>
+	
+	<div>
+		<!-- the onclick attribute is used in conjunction with the handlers object to replace querySelector and addEventListener -->
+		<button onclick="handlers.showTodos()">Display Todos</button>
+		<button onclick="handlers.toggleAll()">Toggle All</button>
+	</div>
 
+	<div>
+		<button onclick="handlers.addItem()">Add Item</button>
+		<input type="text" id="add-todo-text-input">
+	</div>
+
+	<div>
+		<button onclick="handlers.editItem()">Edit Item</button>
+		<input type="number" id="change-todo-position-input">
+		<input type="text" id="change-todo-text-input">
+	</div>
+	
 	<script type="text/javascript" src="ugly-todo.js"></script>
 
 </body>

@@ -67,5 +67,17 @@ var handlers = {
 	},
 	toggleAll: function() {
 		todoList.toggleAll();
-	}
+	},
+	addItem: function() {
+		var addTodoTextInput = document.getElementById("add-todo-text-input");
+		todoList.addItem(addTodoTextInput.value);
+		addTodoTextInput.value = "";
+	},
+	editItem: function() {
+		var changeTodoTextInput = document.getElementById("change-todo-text-input");
+		var changeTodoPositionInput = document.getElementById("change-todo-position-input");
+		todoList.editItem(changeTodoPositionInput.valueAsNumber, changeTodoTextInput.value);
+		changeTodoPositionInput.value = "";
+		changeTodoTextInput.value = "";
+	},
 }
