@@ -80,4 +80,14 @@ var handlers = {
 		changeTodoPositionInput.value = "";
 		changeTodoTextInput.value = "";
 	},
+	delItem: function() {
+		var deleteTodoPositionInput = document.getElementById("delete-todo-position-input");
+		todoList.delItem(deleteTodoPositionInput.valueAsNumber);
+		deleteTodoPositionInput.value = "";
+	},
+	toggleCompleted: function() {
+		var toggleCompletedPositionInput = document.getElementById("toggle-completed-position-input");
+		todoList.toggleCompleted(toggleCompletedPositionInput.valueAsNumber);
+		toggleCompletedPositionInput.value = "";
+	}
 }
