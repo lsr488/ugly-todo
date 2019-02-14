@@ -62,6 +62,9 @@ let todoList = {
 
 // this is used instead of declaring individual document.querySelector variables and eventListeners, and paired with the html on-click="" attribute
 var handlers = {
+	clearInputs: function(field) {
+		field.value = "";
+	},
 	showTodos: function() {
 		todoList.showTodos();
 	},
@@ -71,23 +74,43 @@ var handlers = {
 	addItem: function() {
 		var addTodoTextInput = document.getElementById("add-todo-text-input");
 		todoList.addItem(addTodoTextInput.value);
-		addTodoTextInput.value = "";
+		// addTodoTextInput.value = "";
+		this.clearInputs(addTodoTextInput);
 	},
 	editItem: function() {
 		var changeTodoTextInput = document.getElementById("change-todo-text-input");
 		var changeTodoPositionInput = document.getElementById("change-todo-position-input");
 		todoList.editItem(changeTodoPositionInput.valueAsNumber, changeTodoTextInput.value);
-		changeTodoPositionInput.value = "";
-		changeTodoTextInput.value = "";
+		// changeTodoPositionInput.value = "";
+		// changeTodoTextInput.value = "";
+		this.clearInputs(changeTodoPositionInput);
+		this.clearInputs(changeTodoTextInput);
 	},
 	delItem: function() {
 		var deleteTodoPositionInput = document.getElementById("delete-todo-position-input");
 		todoList.delItem(deleteTodoPositionInput.valueAsNumber);
-		deleteTodoPositionInput.value = "";
+		// deleteTodoPositionInput.value = "";
+		this.clearInputs(deleteTodoPositionInput);
 	},
 	toggleCompleted: function() {
 		var toggleCompletedPositionInput = document.getElementById("toggle-completed-position-input");
 		todoList.toggleCompleted(toggleCompletedPositionInput.valueAsNumber);
-		toggleCompletedPositionInput.value = "";
+		// toggleCompletedPositionInput.value = "";
+		this.clearInputs(toggleCompletedPositionInput);
 	}
 }
+
+// responsible for things SEEN on page
+var view = {
+	showTodos: function() {
+		var todosOl = document.querySelector("ol");
+		todosOl.innerHTML = "";		
+		// creates 1 <li> per item in the todos array
+		for(var i = 0; i < todoList.todos.length; i++) {
+			var todosLi = document.createElement("li");
+			todosLi.textContent = todoList.todos[i].text;
+			todosOl.appendChild(todosLi);
+		}
+	},
+}
+
