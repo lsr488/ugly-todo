@@ -7,12 +7,15 @@ let todoList = {
 			});
 	},
 	editItem: function(index, todoText) {
+		index--; // makes it people-friendly on the UI side
 		this.todos[index].text = todoText;
 	},
 	delItem: function(index) {
+		index--; // makes it people-friendly on the UI side
 		this.todos.splice(index, 1);
 	},
 	toggleCompleted: function(index) {
+		index--; // makes it people-friendly on the UI side
 		let todo = this.todos[index];
 		todo.completed = !todo.completed;
 	},
