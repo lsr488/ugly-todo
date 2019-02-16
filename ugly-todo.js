@@ -65,10 +65,8 @@ var handlers = {
 		this.clearInputs(changeTodoTextInput);
 		view.showTodos();
 	},
-	delItem: function() {
-		var deleteTodoPositionInput = document.getElementById("delete-todo-position-input");
-		todoList.delItem(deleteTodoPositionInput.valueAsNumber);
-		this.clearInputs(deleteTodoPositionInput);
+	delItem: function(position) {
+		todoList.delItem(position);
 		view.showTodos();
 	},
 	toggleCompleted: function() {
@@ -86,7 +84,7 @@ var view = {
 		todosOl.innerHTML = "";		
 		// creates 1 <li> per item in the todos array
 		for(var i = 0; i < todoList.todos.length; i++) {
-			var todosLi = document.createElement("li");
+			var todoLi = document.createElement("li");
 			
 			// show whether completed or not
 			var todoTextWithCompletion = "";
@@ -97,9 +95,10 @@ var view = {
 				todoTextWithCompletion = "( ) " + todo.text;
 			}
 			
-			todosLi.textContent = todoTextWithCompletion;
-			todosLi.appendChild(this.createDeleteButton());
-			todosOl.appendChild(todosLi);
+			todoLi.id = i;
+			todoLi.textContent = todoTextWithCompletion;
+			todoLi.appendChild(this.createDeleteButton());
+			todosOl.appendChild(todoLi);
 		}
 	},
 	createDeleteButton: function() {
@@ -108,4 +107,15 @@ var view = {
 		deleteButton.className = ("delete-button");
 		return deleteButton;
 	},
+	setUpEventListeners: function() {
+		var todosOl = document.querySelector("ol");
+		todosOl.addEventListener("click", function(event) {
+			var elementClicked = event.target;
+			if(elementClicked.className === "delete-button") {
+				handlers.delItem(parseInt(elementClicked.parentNode.id));
+			};
+		});
+	},
 }
+
+view.setUpEventListeners();
