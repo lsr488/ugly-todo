@@ -7,38 +7,34 @@ let todoList = {
 			});
 	},
 	editItem: function(index, todoText) {
-		index--; // makes it people-friendly on the UI side
 		this.todos[index].text = todoText;
 	},
 	delItem: function(index) {
-		index--; // makes it people-friendly on the UI side
 		this.todos.splice(index, 1);
 	},
 	toggleCompleted: function(index) {
-		index--; // makes it people-friendly on the UI side
 		let todo = this.todos[index];
 		todo.completed = !todo.completed;
 	},
 	toggleAll: function() {
 		var completedTodos = 0;
 		var totalTodos = this.todos.length;
+
 		// get number of completed iems
-		for(var i = 0; i < totalTodos; i++) {
-			if(this.todos[i].completed === true) {
+		this.todos.forEach(function(todo) {
+			if(todo.completed === true) {
 				completedTodos++;
 			}
-		}
+		});
+
 		// if everything's true, make everything false
-		if(completedTodos === totalTodos) {
-			for(var i = 0; i < totalTodos; i++) {
-				this.todos[i].completed = false;
+		this.todos.forEach(function(todo) {
+			if(completedTodos === totalTodos) {
+				todo.completed = false;
+			} else {
+				todo.completed = true;
 			}
-		} else {
-			// else, make everything true
-			for(var i = 0; i < totalTodos; i++) {
-				this.todos[i].completed = true;
-			}			
-		}
+		});
 	}
 }
 
@@ -107,10 +103,13 @@ var view = {
 		deleteButton.className = ("delete-button");
 		return deleteButton;
 	},
+	// event delegation, everything handled via the parent element (ol), rather than adding event listeners for every child element
 	setUpEventListeners: function() {
 		var todosOl = document.querySelector("ol");
 		todosOl.addEventListener("click", function(event) {
 			var elementClicked = event.target;
+
+			// delete button
 			if(elementClicked.className === "delete-button") {
 				handlers.delItem(parseInt(elementClicked.parentNode.id));
 			};
